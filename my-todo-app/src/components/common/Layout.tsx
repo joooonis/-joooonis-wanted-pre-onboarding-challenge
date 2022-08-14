@@ -15,7 +15,7 @@ function Layout({ children, isBgcolor = false }: LayoutProps) {
       maxWidth='lg'
       sx={{
         py: '20px',
-        bgcolor: isBgcolor ? '#3894D6' : 'transparent',
+        bgcolor: isBgcolor ? 'primary.main' : 'transparent',
         height: '100vh',
       }}>
       <CssBaseline />

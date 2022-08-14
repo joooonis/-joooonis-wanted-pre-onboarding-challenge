@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static' sx={{ bgcolor: 'transparent', mb: 1 }}>
-        <Toolbar>
+        <Toolbar sx={{ minHeight: '60px' }}>
           <IconButton
             size='large'
             edge='start'
@@ -20,7 +20,7 @@ export default function Header() {
             sx={{ mr: 1 }}>
             <MenuIcon />
           </IconButton>
-          <Typography variant='h4' component='div' sx={{ flexGrow: 1 }}>
+          <Typography variant='h5' component='div' sx={{ flexGrow: 1 }}>
             Todos
           </Typography>
           <Button color='inherit'>Login</Button>
