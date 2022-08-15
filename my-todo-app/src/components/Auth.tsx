@@ -9,6 +9,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
+import { useForm } from 'react-hook-form';
+import { ErrorSharp } from '@mui/icons-material';
 
 function Copyright(props: any) {
   return (
@@ -27,15 +29,22 @@ function Copyright(props: any) {
 }
 
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
-
   return (
     <>
       <Box
@@ -61,29 +70,42 @@ export default function SignIn() {
           </Typography>
           <Box
             component='form'
-            onSubmit={handleSubmit}
             noValidate
-            sx={{ mt: 1 }}>
+            sx={{ mt: 1 }}
+            onSubmit={handleSubmit(onSubmit)}>
             <TextField
               margin='normal'
               required
               fullWidth
               id='email'
               label='Email Address'
-              name='email'
               autoComplete='email'
               autoFocus
+              {...register('email', {
+                pattern:
+                  /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i,
+              })}
             />
+            {errors.email && (
+              <Typography fontSize={12} color='red'>
+                이메일 형식이 올바르지 않습니다.
+              </Typography>
+            )}
             <TextField
               margin='normal'
               required
               fullWidth
-              name='password'
               label='Password'
               type='password'
               id='password'
               autoComplete='current-password'
+              {...register('password', { required: true, minLength: 8 })}
             />
+            {errors.password && (
+              <Typography fontSize={12} color='red'>
+                비밀번호는 최소 8자 이상으로 해주세요.
+              </Typography>
+            )}
             <FormControlLabel
               control={<Checkbox value='remember' color='primary' />}
               label='Remember me'
@@ -110,7 +132,6 @@ export default function SignIn() {
           </Box>
         </Box>
       </Box>
-
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </>
   );

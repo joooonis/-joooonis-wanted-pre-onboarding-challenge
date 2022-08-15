@@ -7,18 +7,14 @@ import {
   DialogContent,
   DialogTitle,
   Avatar,
+  Box,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useForm } from 'react-hook-form';
 
 export default function TodoFormDialog() {
   const [open, setOpen] = React.useState(false);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -55,12 +51,13 @@ export default function TodoFormDialog() {
           }}
         />
       </Avatar>
-      <form>
+      <Box component='form'>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle sx={{ pb: '1px' }}>Add Todo</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
+              required
               margin='dense'
               id='name'
               label='title'
@@ -69,6 +66,7 @@ export default function TodoFormDialog() {
               {...register('title')}
             />
             <TextField
+              required
               id='outlined-multiline-static'
               label='detail'
               multiline
@@ -76,14 +74,14 @@ export default function TodoFormDialog() {
               rows={4}
               sx={{ mt: 1 }}
               {...register('detail')}
-            />
+            />{' '}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
             <Button onClick={handleSubmit(onSubmit)}>Add</Button>
           </DialogActions>
         </Dialog>
-      </form>
+      </Box>
     </div>
   );
 }
