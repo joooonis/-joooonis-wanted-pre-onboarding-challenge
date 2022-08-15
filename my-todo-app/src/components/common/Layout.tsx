@@ -12,7 +12,7 @@ function Layout({ children, isBgcolor = false }: LayoutProps) {
   return (
     <Container
       component='main'
-      maxWidth='lg'
+      maxWidth='md'
       sx={{
         py: '20px',
         bgcolor: isBgcolor ? 'primary.main' : 'transparent',
