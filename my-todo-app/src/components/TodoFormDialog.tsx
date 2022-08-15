@@ -6,7 +6,9 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Avatar,
 } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function TodoFormDialog() {
   const [open, setOpen] = React.useState(false);
@@ -21,9 +23,27 @@ export default function TodoFormDialog() {
 
   return (
     <div>
-      <Button variant='outlined' onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
+      <Avatar
+        onClick={handleClickOpen}
+        sx={{
+          bgcolor: 'white',
+          position: 'fixed',
+          right: '30px',
+          bottom: '60px',
+          width: 55,
+          height: 55,
+          '&:hover': {
+            opacity: [0.9, 0.8, 0.7],
+          },
+        }}>
+        <AddIcon
+          sx={{
+            color: 'primary.main',
+            width: 30,
+            height: 30,
+          }}
+        />
+      </Avatar>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle sx={{ pb: '1px' }}>Add Todo</DialogTitle>
         <DialogContent>
@@ -35,7 +55,6 @@ export default function TodoFormDialog() {
             fullWidth
             variant='standard'
           />
-
           <TextField
             id='outlined-multiline-static'
             label='detail'
