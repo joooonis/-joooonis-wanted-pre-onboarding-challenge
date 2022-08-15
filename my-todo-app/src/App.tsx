@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import React from 'react';
-import SignInPage from './pages/SignInPage';
+import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -21,7 +21,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path='/' element={<HomePage />}></Route>
-        <Route path='/signin' element={<SignInPage />}></Route>
+        <Route path='/auth' element={<AuthPage />}></Route>
       </Routes>
     </ThemeProvider>
   );

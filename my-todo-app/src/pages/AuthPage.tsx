@@ -1,8 +1,8 @@
 import Layout from '../components/common/Layout';
-import SignIn from '../components/SignIn';
+import SignIn from '../components/Auth';
 import React from 'react';
 
-export default function SignInPage() {
+export default function AuthPage() {
   return (
     <Layout>
       <SignIn />
